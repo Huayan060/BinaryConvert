@@ -170,6 +170,31 @@ extension Double:DataConvertible {}
 
 extension Bool:DataConvertible {}
 
+extension Data:DataConvertible {
+    public init?(_ data:Data) {
+        self = data
+    }
+    
+    public var data:Data {
+        return self
+    }
+    
+    public var size:Int {
+        return self.count
+    }
+    
+    public func toFitBytes(bytesSize:Int) -> [UInt8] {
+        precondition(self.count <= bytesSize,"Float param is out of data range")
+        
+        let size = self.count
+        var bytesArray = [UInt8](repeating: 0, count: bytesSize)
+        (self.data as NSData).getBytes(&bytesArray, length: size)
+        
+        return bytesArray
+    }
+
+}
+
 extension String:DataConvertible {
     public init?(_ data:Data) {
         self.init(data: data, encoding: .utf8)
@@ -185,8 +210,8 @@ extension String:DataConvertible {
     
     public func toFitBytes(bytesSize:Int) -> [UInt8] {
         precondition(bytesSize <= self.size,"String out of range")
-        let strUTF8 = self.utf8
-        let bytesArray = [UInt8](strUTF8)
+        var bytesArray = [UInt8](repeating: 0, count: bytesSize)
+        (self.data as NSData).getBytes(&bytesArray, length: self.size)
         return bytesArray
     }
 }
