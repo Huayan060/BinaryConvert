@@ -4,9 +4,9 @@ BinaryConvert project is used swift3, so you need to use this by XCode 8 and up 
 
 ## Support:
 It can convert Data to some other type, we support types as follow:
-1.Int
-2.UInt
-3.UInt8
+- 1.Int
+- 2.UInt
+- 3.UInt8
 4.UInt16
 5.UInt32
 6.UInt64
