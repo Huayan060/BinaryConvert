@@ -13,12 +13,13 @@ It can convert Data to some other type, we support types as follow:
 - 7.Float
 - 8.Double
 - 9.Bool
-- 10.String
-- 11.Mappable
-- 12.Array(base type)
-- 13.Array(Mappable)
+- 10.Data
+- 11.String
+- 12.Mappable
+- 13.Array(base type)
+- 14.Array(Mappable)
 
-Attention: Index 1-9 is base type
+Attention: Index 1-10 is base type
 
 ### Simple example:
 ```swift
