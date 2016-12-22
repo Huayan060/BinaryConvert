@@ -27,36 +27,13 @@ class BinaryConvertTests: XCTestCase {
     }
     
     func testPerformanceExample() {
-        // This is an example of a performance test case.
+        // This is an example of a performance test case.       
         
-        /*       let value:[Int] = [1,2,3,4]
-         //var value1 :Double = 1.0
-         //var data = value.data
-         let data = value.data(using: String.Encoding.utf8)
-         //let data = value.data(using: String.Encoding.utf8)
-         let bytesLength = data.count
-         var bytesArray  = [UInt8](repeating: 0, count: bytesLength)
-         (data as NSData).getBytes(&bytesArray, length: bytesLength)
-         for item in bytesArray {
-         print(UInt8(item))
-         }
-         print(bytesArray)
-         
-         //        var bytesArray1:[UInt8]=[UInt8]()
-         //        bytesArray1.append(bytesArray[4])
-         //        bytesArray1.append(bytesArray[5])
-         //        bytesArray1.append(bytesArray[6])
-         //        bytesArray1.append(bytesArray[7])
-         //        let test = Data(bytes:bytesArray1)
-         //
-         //        print(Int(test))*/
-        
-        
-        let a = 1
-        let b :Double = 2.0
-        let c = "test"
-        let d :Float = 1.0
-        let e = 2
+        let a:Int = 1
+        let b :Double = 1//Double(bigEndian:2.0)
+        let c = "1234"
+        let d :Float = 1.0//Float(bigEndian:2.0)
+        let e:Int = 2
         let f = true
         
         var data = Data()
@@ -69,49 +46,55 @@ class BinaryConvertTests: XCTestCase {
         data.append(a.data)
         data.append(e.data)
         data.append(e.data)
+        data.append(e.data)
         data.append(f.data)
         
-        print("dataT:", data)
+        print("data:", data)
+        for item in f.bytes() {
+            for x in 0..<8{
+                print(item.subbit(x))
+            }
+        }
         
         var bytesLength = data.count
         var bytesArray  = [UInt8](repeating: 0, count: bytesLength)
-        (data as NSData).getBytes(&bytesArray, length: bytesLength)
+        data.copyBytes(to: &bytesArray, count: bytesLength)
         for item in bytesArray {
             print(UInt8(item))
         }
         
-        print(a.size)
-        print(b.size)
-        print(c.size)
-        print(d.size)
+        print("aa:",a.subbit(0))
+        var tmp = a.bytes()
+        _=setBitForByte(bitLen: 64, toBytes: &tmp, fromBytes: e.bytes(), toBitStart: 0, fromBitStart: 0)
+        print(Int(Data(bytes:tmp)))
         
         let dataT = BinaryConvert<test>().toMapObject(data: data)
-        print("dataT:", dataT?.parm1)
-        print("dataT:", dataT?.parm2)
-        print("dataT:", dataT?.parm3)
-        print("dataT:", dataT?.parm4)
+        print("parm1:", dataT?.parm1)
+        print("parm2:", dataT?.parm2)
+        print("parm3:", dataT?.parm3)
+        print("parm4:", dataT?.parm4)
         dataT?.parm5?.printFunc()
         
         for item in (dataT?.parm6)! {
-            print("dataT:", item)
+            print("parm6:", item)
         }
         
         for item in (dataT?.parm7)! {
             item.printFunc()
         }
-        print("dataT:", dataT?.parm8)
-        
+        print("parm8:", dataT?.parm8)
+        print("dataAll:", dataT)
         let dataAll = BinaryConvert<test>().toData(object: dataT!)
-        print("dataAll:", dataAll)
+        print("dataAll size:", dataAll)
         
         bytesLength = dataAll.count
         bytesArray  = [UInt8](repeating: 0, count: bytesLength)
-        (data as NSData).getBytes(&bytesArray, length: bytesLength)
+        data.copyBytes(to: &bytesArray, count: bytesLength)
+      //  (data as NSData).getBytes(&bytesArray, length: bytesLength)
         for item in bytesArray {
             print(UInt8(item))
         }
 
-        
         self.measure {
             // Put the code you want to measure the time of here.
         }
@@ -128,7 +111,7 @@ class subTest : Convertable {
     required init(){}
     
     func mapping(_ map: Map) {
-        parm1 <-> map[8]
+        parm1 <-> map[8*8]
     }
     
     public func printFunc() {
@@ -153,14 +136,14 @@ class test : Convertable {
     required init(){}
     
     func mapping(_ map: Map) {
-        parm1 <-> map[8]
-        parm2 <-> map[8]
-        parm3 <-> map[4]
-        parm4 <-> map[4]
-        parm5 <-> map       // Convertable, not need to write total size or you can write as parm5 <-> map[0], set param to 0
-        parm6 <-> map[8,16] // basic type array
-        parm7 <-> map[0,16] // Convertable type array, fisrt param should set 0 or you can write as parm7 <-> map[16], not set first param
-        parm8 <-> map[1]
+        parm1 <-> map[8*8]
+        parm2 <-> map[8*8]
+        parm3 <-> map[4*8]
+        parm4 <-> map[4*8]
+        parm5 <-> map           // Convertable, not need to write total size or you can write as parm5 <-> map[0], set param to 0
+        parm6 <-> map[8*8,16*8] // basic type array
+        parm7 <-> map[0,24*8]   // Convertable type array, fisrt param should set 0
+        parm8 <-> map[4]
         
     }
 }

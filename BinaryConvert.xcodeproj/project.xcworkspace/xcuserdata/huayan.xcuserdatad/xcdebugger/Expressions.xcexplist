@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "Map.toDataMapValue&lt;A where ...&gt; (value : A) -&gt; ():Map.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "nIndex">
+            </PersistentString>
+            <PersistentString
+               value = "nSingleSize">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DataConvertible.init(Data) -&gt; A?:TypeExtention.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "data.count">
+            </PersistentString>
+            <PersistentString
+               value = "MemoryLayout&lt;Self&gt;.stride">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Map.valueMap&lt;A where ...&gt; () -&gt; A?:Map.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dataValue.count*ByteSize">
+            </PersistentString>
+            <PersistentString
+               value = "nIndex">
+            </PersistentString>
+            <PersistentString
+               value = "dataValue.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "String.subbits(Range&lt;Int&gt;) -&gt; Int:TypeExtention.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Map.getConvertableSize() -&gt; Int:Map.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "nTotalMapSize">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Map.value&lt;A where ...&gt; () -&gt; A?:Map.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Int(self.currentValue)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DataConvertible.bytes(byteOrder : ByteOrder) -&gt; [UInt8]:TypeExtention.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DataConvertible.bytes.getter:TypeExtention.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.bytes">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "mypower(Int, Int) -&gt; Int:TypeExtention.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Map.valueArrayMap&lt;A where ...&gt; () -&gt; [A]?:Map.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "currentValue.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Map.toDataValue&lt;A where ...&gt; (value : A) -&gt; ():Map.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "nCurrentSizeCount">
+            </PersistentString>
+            <PersistentString
+               value = "value.bytes()">
+            </PersistentString>
+            <PersistentString
+               value = "nIndex">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BinaryConvertTests.testPerformanceExample() -&gt; ():BinaryConvertTests.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DataConvertible.(subbits(Range&lt;Int&gt;) -&gt; Int).(closure #1):TypeExtention.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Map.subscript.getter:Map.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "currentValue">
+            </PersistentString>
+            <PersistentString
+               value = "dataValue.count*8">
+            </PersistentString>
+            <PersistentString
+               value = "nIndex">
+            </PersistentString>
+            <PersistentString
+               value = "nIndex+nCount">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "setBitForByte(bitLen : Int, toBytes : inout [UInt8], fromBytes : [UInt8], toBitStart : Int, fromBitStart : Int) -&gt; Bool:TypeExtention.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "toBytes.count*ByteSize">
+            </PersistentString>
+            <PersistentString
+               value = "bitIndex + fromBitStart">
+            </PersistentString>
+            <PersistentString
+               value = "toBytes.count">
+            </PersistentString>
+            <PersistentString
+               value = "fromBytes.count*ByteSize">
+            </PersistentString>
+            <PersistentString
+               value = "fromBytes.count * ByteSize">
+            </PersistentString>
+            <PersistentString
+               value = "bitIndex+toBitStart">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DataConvertible.subbits(Int, Int) -&gt; [UInt8]:TypeExtention.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DataConvertible.subbits(Range&lt;Int&gt;, byteOrder : ByteOrder) -&gt; Int:TypeExtention.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DataConvertible.subbits(Range&lt;Int&gt;) -&gt; Int:TypeExtention.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "$1.element">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

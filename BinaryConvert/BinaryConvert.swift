@@ -58,15 +58,15 @@ public final class BinaryConvert<T:Convertable> {
     
     public func toMapObjectArray(data:Data)->[T] {
         var object = T()
-        let nMapSize = object.size()
+        let nMapSize = object.bitssize()
         var retArray=[T]()
         
-        if data.count%nMapSize == 0 {
-            let nCount = data.count/nMapSize
+        if (data.count*ByteSize)%nMapSize == 0 {
+            let nCount = (data.count*ByteSize)/nMapSize
             
             for index in 0..<nCount {
                 
-                let subData = data.subdata(in: Range((index*nMapSize)..<((index+1)*nMapSize)))
+                let subData = Data(data.subbits(index*nMapSize, nMapSize))
                 if let mapObj = BinaryConvert().toMapObject(data: subData) {
                     retArray.append(mapObj)
                 }

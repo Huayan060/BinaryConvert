@@ -17,7 +17,7 @@ public protocol Convertable {
     
     static func objectForMapping(_ map:Map)->Convertable?
     
-    mutating func size() -> Int
+    mutating func bitssize() -> Int
 }
 
 public extension Convertable {
@@ -39,7 +39,7 @@ public extension Convertable {
         return BinaryConvert().toData(object: self)
     }
     
-    public mutating func size()->Int {
+    public mutating func bitssize()->Int {
         var nSize = 0
         
         let map = Map(blCountConvertable:true)

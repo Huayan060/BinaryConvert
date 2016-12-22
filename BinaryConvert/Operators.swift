@@ -47,7 +47,7 @@ public func <-> <T:Convertable>(left: inout T?, right: Map) {
         }
     case .CountConvertable:
         var tmp = T()
-        right.setSubConvertableSizeToTotal(size: tmp.size())
+        right.setSubConvertableSizeToTotal(size: tmp.bitssize())
     default:
         print("default")
     }
@@ -62,6 +62,7 @@ public func <-><T:Convertable>(left:inout [T]?, right: Map) {
         if let field = left {
             right.toDataMapArrayValue(mapArrayValue: field)
         }
+    
     default:
         print("default")
     }
@@ -99,7 +100,7 @@ public func <-> <T:Convertable>(left: inout T!, right: Map) {
         right.toDataMapValue(value: left)
     case .CountConvertable:
         var tmp = T()
-        right.setSubConvertableSizeToTotal(size: tmp.size())
+        right.setSubConvertableSizeToTotal(size: tmp.bitssize())
     default:
         print("default")
     }
@@ -148,7 +149,7 @@ public func <-> <T:Convertable>(left: inout T, right: Map) {
         right.toDataMapValue(value: left)
     case .CountConvertable:
         var tmp = T()
-        right.setSubConvertableSizeToTotal(size: tmp.size())
+        right.setSubConvertableSizeToTotal(size: tmp.bitssize())
     default:
         print("default")
     }
@@ -165,3 +166,4 @@ public func <-><T:Convertable>(left:inout [T], right: Map) {
         print("default")
     }
 }
+

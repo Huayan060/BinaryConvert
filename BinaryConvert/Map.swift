@@ -11,14 +11,14 @@ import Foundation
 public final class Map {
     
     public var nIndex = 0   // data array size index
-    public var nCurrentSizeCount = 0 // byte size index
+    public var nCurrentSizeCount = 0 // bits size index
     public var nTotalMapSize = 0 // total map size
     
     public var dataValue:Data = Data() // all data value
     public var mappingType:MappingType = .DefaultVlue // convert type
     public var currentValue:Data = Data() // sub data of one parament
 
-    public var nSingleSize = 0 // array single size
+    public var nSingleSize = 0 // array single bits size
     
     public init(){
         self.mappingType = .ToData
@@ -33,10 +33,10 @@ public final class Map {
         self.mappingType = .CountConvertable
     }
     
-    public subscript(nByteCount:Int)->Map{
-        let nCount = nByteCount
+    public subscript(nBitCount:Int)->Map{
+        let nCount = nBitCount
         // Convertable type
-        if nByteCount > 0 {
+        if nBitCount > 0 {
             // to set array type is no
             nSingleSize = 0
             if self.mappingType == .CountConvertable {
@@ -44,11 +44,11 @@ public final class Map {
             }
             else {
                 nCurrentSizeCount = nCount
-                
-                if nIndex+nCount <= dataValue.count {
-                    currentValue = dataValue.subdata(in: Range(nIndex..<nIndex+nCount))
-                    nIndex += nCount
+                nSingleSize = nCount
+                if nIndex+nCount <= dataValue.count*ByteSize && self.mappingType == .FromData{
+                    currentValue = Data(bytes: dataValue.subbits(nIndex, nCount))
                 }
+                nIndex += nCount
             }
         }
         
@@ -66,17 +66,20 @@ public final class Map {
         else {
             nCurrentSizeCount = nTotal
             nSingleSize = nSingle
-            if nIndex+nTotal <= dataValue.count {
-                currentValue = dataValue.subdata(in: Range(nIndex..<nIndex+nTotal))
-                nIndex += nTotal
+            if self.mappingType == .FromData {
+                precondition(nIndex+nTotal <= dataValue.count*ByteSize,"From data index is out range")
+                currentValue = Data(bytes: dataValue.subbits(nIndex, nTotal))
             }
+            nIndex += nTotal
         }
         
         return self
     }
     
     public func setSubConvertableSizeToTotal(size:Int) {
+        nSingleSize = size
         nTotalMapSize += size
+        nIndex += nSingleSize
     }
     
     public func getConvertableSize()->Int{
@@ -90,44 +93,67 @@ public final class Map {
     }
     // basic type convert to data
     public func toDataValue<T:DataConvertible>(value:T) {
-        let byteArray = value.toFitBytes(bytesSize: nCurrentSizeCount)
-        dataValue.append(byteArray, count:byteArray.count)
+/*        let byteArray = value.toFitBytesByBitSize(bitSize: nCurrentSizeCount)
+        dataValue.append(byteArray, count:byteArray.count)*/
+        var arrayBytes = dataValue.bytes()
+        _ = setBitForByte(bitLen: nCurrentSizeCount, toBytes: &arrayBytes, fromBytes: value.bytes(), toBitStart: nIndex-nSingleSize, fromBitStart: 0)
+        dataValue.removeAll()
+        dataValue.append(arrayBytes, count: arrayBytes.count)
     }
 
     // convert 2: Map type
     // data convert to Map type
     public func valueMap<T:Convertable>()->T? {
         var temp = T()
-        let size = temp.size()
-        precondition(nIndex+size <= dataValue.count,"Convertable Byte(s) set out of range")
+        let size = temp.bitssize()
+        precondition(nIndex+size <= dataValue.count*ByteSize,"Convertable Byte(s) set out of range")
         
         nCurrentSizeCount = size
-        currentValue = dataValue.subdata(in: Range(nIndex..<nIndex+size))
+        currentValue = Data(bytes: dataValue.subbits(nIndex, size))
         nIndex += size
         
         return BinaryConvert().toMapObject(data: currentValue)
     }
     // Map type convert to data
     public func toDataMapValue<T:Convertable>(value:T) {
+        let fromArray = BinaryConvert().toData(object: value).bytes()
+        var arrayBytes = dataValue.bytes()
+        var temp = T()
+        let size = temp.bitssize()
+        nCurrentSizeCount = size
+        _ = setBitForByte(bitLen: nCurrentSizeCount, toBytes: &arrayBytes, fromBytes: fromArray, toBitStart: nIndex, fromBitStart: 0)
+        nIndex += size
         
-        dataValue.append(BinaryConvert().toData(object: value))
+        dataValue.removeAll()
+        dataValue.append(arrayBytes, count: arrayBytes.count)
+       // dataValue.append(BinaryConvert().toData(object: value))
     }
     
     // convert 3: Map array type
     // data convert to map array type
     public func valueArrayMap<T:Convertable>()-> [T]? {
         var temp = T()
-        let size = temp.size()
-        precondition(currentValue.count%size == 0,"Convertable Byte(s) set out of range")
+        let size = temp.bitssize()
+        precondition((currentValue.count*ByteSize)%size == 0,"Convertable Byte(s) set out of range")
         
         return BinaryConvert().toMapObjectArray(data: currentValue)
     }
     // map array type convert to data
     public func toDataMapArrayValue<T:Convertable>(mapArrayValue:[T]) {
+        var temp = T()
+        let size = temp.bitssize()
+        
+        let remainder = nCurrentSizeCount%size
+        precondition(remainder == 0 ,"Convertable array total size and single size is not match")
+        
+        let mapData = BinaryConvert().toData(arrayObj:mapArrayValue)
+       /* for (index,item) in mapArrayValue.enumerated() {
+            let fromArray = BinaryConvert().toData(object: item).bytes()
             
-        for item in mapArrayValue {
-            dataValue.append(BinaryConvert().toData(object: item))
-        }
+            _ = setBitForByte(bitLen: nSingleSize, toBytes: &arrayBytes, fromBytes: fromArray, toBitStart: nIndex+index*size, fromBitStart: 0)
+          //  dataValue.append(BinaryConvert().toData(object: item))
+        }*/
+        dataValue.append(mapData)
     }
     
     // convert 4: basic array type
@@ -139,7 +165,7 @@ public final class Map {
         let nCount = nCurrentSizeCount/nSingleSize
         var ret = [T]()
         for index in 0..<nCount {
-            ret.append(T(currentValue.subdata(in: Range(index*nSingleSize..<(index+1)*nSingleSize)))!)
+            ret.append(T(Data(currentValue.subbits(index*nSingleSize, nSingleSize)))!)
         }
         return ret
     }
@@ -148,12 +174,15 @@ public final class Map {
         precondition(nSingleSize > 0 ,"Array have to two arguments, single and toal")
         let remainder = nCurrentSizeCount%nSingleSize
         precondition(remainder == 0 ,"Array total size and single size is not match")
+        var arrayBytes = dataValue.bytes()
 
-        for item in arrayValue {
-            let byteArray = item.toFitBytes(bytesSize: nSingleSize)
-            dataValue.append(byteArray, count:byteArray.count)
+        for (index,item) in arrayValue.enumerated() {
+            let byteArray = item.toFitBytesByBitSize(bitSize: nSingleSize)
+            _ = setBitForByte(bitLen: nSingleSize, toBytes: &arrayBytes, fromBytes: byteArray, toBitStart: nIndex+index*item.size*ByteSize-nCurrentSizeCount, fromBitStart: 0)
+            //dataValue.append(byteArray, count:byteArray.count)
         }
-        
+        dataValue.removeAll()
+        dataValue.append(arrayBytes, count: arrayBytes.count)
     }
 
 }

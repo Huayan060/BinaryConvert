@@ -7,14 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9301AB501DF6B0C000B7B8DA /* BinaryConvert.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9301AB461DF6B0C000B7B8DA /* BinaryConvert.framework */; };
-		9301AB551DF6B0C000B7B8DA /* BinaryConvertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9301AB541DF6B0C000B7B8DA /* BinaryConvertTests.swift */; };
 		9301AB571DF6B0C000B7B8DA /* BinaryConvert.h in Headers */ = {isa = PBXBuildFile; fileRef = 9301AB491DF6B0C000B7B8DA /* BinaryConvert.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9301AB611DF6B0FA00B7B8DA /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9301AB601DF6B0FA00B7B8DA /* Operators.swift */; };
-		9301AB631DF6B15500B7B8DA /* TypeExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9301AB621DF6B15500B7B8DA /* TypeExtention.swift */; };
 		9301AB651DF6B1B900B7B8DA /* BinaryConvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9301AB641DF6B1B900B7B8DA /* BinaryConvert.swift */; };
 		9301AB671DF6B22800B7B8DA /* Convertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9301AB661DF6B22800B7B8DA /* Convertable.swift */; };
 		9301AB691DF6B27400B7B8DA /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9301AB681DF6B27400B7B8DA /* Map.swift */; };
+		9338C08A1E0BB92800666FB1 /* TypeExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9301AB621DF6B15500B7B8DA /* TypeExtention.swift */; };
+		9338C08F1E0BB97A00666FB1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9301AB4A1DF6B0C000B7B8DA /* Info.plist */; };
+		9338C0901E0BB97B00666FB1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9301AB4A1DF6B0C000B7B8DA /* Info.plist */; };
+		9338C0941E0BBC4B00666FB1 /* BinaryConvertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9301AB541DF6B0C000B7B8DA /* BinaryConvertTests.swift */; };
+		9338C0951E0BBC6F00666FB1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9301AB561DF6B0C000B7B8DA /* Info.plist */; };
+		9338C0961E0BBC7000666FB1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9301AB561DF6B0C000B7B8DA /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +56,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9301AB501DF6B0C000B7B8DA /* BinaryConvert.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,7 +160,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = huayan;
 				TargetAttributes = {
 					9301AB451DF6B0C000B7B8DA = {
@@ -195,6 +197,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9338C0961E0BBC7000666FB1 /* Info.plist in Resources */,
+				9338C08F1E0BB97A00666FB1 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +206,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9338C0951E0BBC6F00666FB1 /* Info.plist in Resources */,
+				9338C0901E0BB97B00666FB1 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,8 +219,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9301AB691DF6B27400B7B8DA /* Map.swift in Sources */,
-				9301AB631DF6B15500B7B8DA /* TypeExtention.swift in Sources */,
 				9301AB671DF6B22800B7B8DA /* Convertable.swift in Sources */,
+				9338C08A1E0BB92800666FB1 /* TypeExtention.swift in Sources */,
 				9301AB611DF6B0FA00B7B8DA /* Operators.swift in Sources */,
 				9301AB651DF6B1B900B7B8DA /* BinaryConvert.swift in Sources */,
 			);
@@ -224,7 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9301AB551DF6B0C000B7B8DA /* BinaryConvertTests.swift in Sources */,
+				9338C0941E0BBC4B00666FB1 /* BinaryConvertTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,13 +263,16 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: JIE ZHENG (9T2M78JER9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JIE ZHENG (9T2M78JER9)";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_ON_DEMAND_RESOURCES = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -280,14 +289,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
+				VERSIONING_SYSTEM = "";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
@@ -310,14 +319,17 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: JIE ZHENG (9T2M78JER9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JIE ZHENG (9T2M78JER9)";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_ON_DEMAND_RESOURCES = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -327,13 +339,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
+				VERSIONING_SYSTEM = "";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
@@ -420,6 +432,7 @@
 				9301AB5C1DF6B0C000B7B8DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9301AB5D1DF6B0C000B7B8DA /* Build configuration list for PBXNativeTarget "BinaryConvertTests" */ = {
 			isa = XCConfigurationList;
@@ -428,6 +441,7 @@
 				9301AB5F1DF6B0C000B7B8DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
