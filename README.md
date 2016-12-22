@@ -13,12 +13,13 @@ It can convert Data to some other type, we support types as follow:
 - 7.Float
 - 8.Double
 - 9.Bool
-- 10.String
-- 11.Mappable
-- 12.Array(base type)
-- 13.Array(Mappable)
+- 10.Data
+- 11.String
+- 12.Mappable
+- 13.Array(base type)
+- 14.Array(Mappable)
 
-Attention: Index 1-9 is base type
+Attention: Index 1-10 is base type
 
 ### Simple example:
 ```swift
@@ -34,7 +35,7 @@ class subTest : Convertable {
     required init(){}
     
     func mapping(_ map: Map) {
-        parm1 <-> map[8]
+        parm1 <-> map[8*8]
     }
     
     public func printFunc() {
@@ -59,14 +60,14 @@ class test : Convertable {
     required init(){}
     
     func mapping(_ map: Map) {
-        parm1 <-> map[8]
-        parm2 <-> map[8]
-        parm3 <-> map[4]
-        parm4 <-> map[4]
-        parm5 <-> map       // Convertable, not need to write total size or you can write as parm5 <-> map[0], set param to 0
-        parm6 <-> map[8,16] // basic type array
-        parm7 <-> map[0,16] // Convertable type array, fisrt param should set 0 or you can write as parm7 <-> map[16], not set first param
-        parm8 <-> map[1]
+        parm1 <-> map[8*8]
+        parm2 <-> map[8*8]
+        parm3 <-> map[4*8]
+        parm4 <-> map[4*8]
+        parm5 <-> map           // Convertable, not need to write total size or you can write as parm5 <-> map[0], set param to 0
+        parm6 <-> map[8*8,16*8] // basic type array
+        parm7 <-> map[0,24*8]   // Convertable type array, fisrt param should set 0
+        parm8 <-> map[4]
         
     }
 }
